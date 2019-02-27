@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>IBM Watson Talent Feedback</title>
+<link rel="stylesheet" href="https://unpkg.com/carbon-components/css/carbon-components.min.css">
+</head>
+<body>
+  <div id='page-container' style='padding: 20px 30px 10px 30px;'>
+    <div class="bx--content">
+      <h2>IBM Watson Talent Feedback</h2>
+
+      <p>
+        Please give us your feedback, your thoughts and ideas. We really want to hear from you.
+      </p>
+      <div style='height:40px;'></div>
+
+      <div class="bx--tile" style='padding: 50px 100px 80px 100px;'>
+      <div id='wts-frame' style=''>
+        <form action='/thank'  method='post' name='form1'>
+          <div  class="bx--form-item bx--text-input-wrapper">
+            <label for="text-input-3" class="bx--label">Name</label>
+            <input id="text-input-3" type="text" name='name' class="bx--text-input" placeholder="Your name">
+          </div>
+          <div  class="bx--form-item bx--text-input-wrapper">
+            <label for="text-input-3" class="bx--label">Email</label>
+            <input id="text-input-3" type="text" name='email'class="bx--text-input" placeholder="Your email address">
+          </div>
+          <div class="bx--form-item">
+            <label for="text-area-2" class="bx--label">Your feedback</label>
+            <textarea id="text-area-2" name='feedback' class="bx--text-area bx--text-area--v2" rows="4" cols="50" placeholder="Enter your feedback, thoughts, dreams, ideas...what do you want us to know?"></textarea>
+          </div>
+          <div class="bx--form-item">
+            <input class="bx--btn bx--btn--primary" type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
