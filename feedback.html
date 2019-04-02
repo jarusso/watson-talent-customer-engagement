@@ -4,38 +4,292 @@
 <meta charset="utf-8" />
 <title>IBM Watson Talent Feedback</title>
 <link rel="stylesheet" href="https://unpkg.com/carbon-components/css/carbon-components.min.css">
+<script type="text/javascript" src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js">
+
+var Dropdown = CarbonComponents.Dropdown;
+const dropDownElement = document.getElementById('category-picker');
+const dropDownInstance = Dropdown.create(dropDownElement);
+</script>
+<script>
+
+function loader()
+{
+  document.getElementById('picker-area').style.display = "block";
+  document.getElementById('idea-feedback').style.display = "none";
+  document.getElementById('contact-info').style.display = "none";
+}
+
+function showHide( showMe, hideMe)
+{
+  //alert( "hide: " + hideMe + " | show: " + showMe);
+  document.getElementById(hideMe).style.display = "none";
+  document.getElementById(showMe).style.display = "block";
+
+  //alert( document.getElementById('category-item').value);
+  return;
+}
+
+function setCategory( option)
+{
+  document.getElementById('category-item').value = option;
+  //document.getElementById('next-button-1').style.display = "block";
+  //alert(" state is " + document.getElementById('next-button-1').disabled);
+  document.getElementById('next-button-1').disabled = false;
+  //alert(" and now state is " + document.getElementById('next-button-1').disabled);
+
+  //alert( document.getElementById('category-item').value);
+}
+
+function checkFeedback( )
+{
+
+  var textEntered = document.getElementById('feedback-capture').value;
+  //alert(" textEntered: " + textEntered + " length: " + textEntered.length)
+  if ( textEntered.length > 10)
+  {
+    document.getElementById('next-button-2').disabled = false;
+    //document.getElementById('next-button-2').style.display = "block";
+  }
+}
+
+function setFeedback()
+{
+
+  document.getElementById('feedback-item').value = document.getElementById('feedback-capture').value;
+  //alert('feedback: ' + document.getElementById('feedback-item').value);
+  //alert( document.getElementById('category-item').value);
+
+
+  /*
+  var difficultyRaw = document.getElementById('difficulty-capture').value;
+  //alert('difficultyRaw: ' + difficultyRaw);
+
+  var difficultyLabel = "none";
+  if ( difficultyRaw < 20)
+  {
+      difficultyLabel = "Easy";
+  }
+  else if ( difficultyRaw < 40)
+  {
+      difficultyLabel = "Somewhat Easy";
+  }
+  else if ( difficultyRaw < 60)
+  {
+      difficultyLabel = "Neither Easy or Hard";
+  }
+  else if ( difficultyRaw < 80)
+  {
+      difficultyLabel = "Somewhat Hard";
+  }
+  else {
+      difficultyLabel = "Hard";
+  }
+
+  document.getElementById('difficulty-item').value = difficultyLabel;
+  //alert( "difficultyLabel: " + difficultyLabel)
+
+  var valueRaw = document.getElementById('value-capture').value;
+  //alert( "valueRaw: " + valueRaw);
+  var ValueLabel = "none";
+  if ( valueRaw < 20)
+  {
+      valueLabel = "Valuable";
+  }
+  else if ( valueRaw < 40)
+  {
+      valueLabel = "Somewhat Valuable";
+  }
+  else if ( valueRaw < 60)
+  {
+      valueLabel = "Maybe Valuable";
+  }
+  else if ( valueRaw < 80)
+  {
+      valueLabel = "Somewhat Nice To Have";
+  }
+  else {
+      valueLabel = "Nice To Have";
+  }
+  document.getElementById('value-item').value = valueLabel;
+  //alert( "valueLabel: " + valueLabel);
+*/
+
+}
+</script>
+
 </head>
-<body>
+<body onload="loader();">
   <div id='page-container' style='padding: 20px 30px 10px 30px;'>
-    <div class="bx--content">
-      <h2>IBM Watson Talent Feedback</h2>
 
+    <div class="bx--content" >
+      <h4>IBM <b>Watson Talent</b> Codename: Ideation Station</h4>
+
+      <div style="height: 40px;"></div>
       <p>
-        Please give us your feedback, your thoughts and ideas. We really want to hear from you.
-      </p>
-      <div style='height:40px;'></div>
+        <div id="picker-area" style="width:60%">
+          <div style="font-size:14px;color:#aaa;">Section 1/3</div>
+          <div style="height: 20px;"></div>
+          <h1>How would you categorize your idea?</h1>
+            <div style="height: 20px;"></div>
+            <p>Let's start by understanding the basic area that you're thinking about. This will help us get your idea to the right people</p>
+            <div style="height: 40px;"></div>
+            <ul data-dropdown data-value class="bx--dropdown" tabindex="0" id="category-picker">
+              <li class="bx--dropdown-text">
+                 Categories
+                 <svg class="bx--dropdown__arrow" width="10" height="5" viewBox="0 0 10 5" fill-rule="evenodd">
+                  <path d="M10 0L5 5 0 0z"></path>
+                </svg>
+              </li>
+              <li>
+                <ul class="bx--dropdown-list">
+                  <li data-option data-value="all" class="bx--dropdown-item">
+                    <a class="bx--dropdown-link" href="javascript:void(0);" onclick="setCategory('Artificial Intelligence');" tabindex="-1">Artificial Intelligence</a>
+                  </li>
+                  <li data-option data-value="cloudFoundry" class="bx--dropdown-item">
+                    <a class="bx--dropdown-link" href="javascript:void(0);" onclick="setCategory('User Experience');" tabindex="-1">User Experience</a>
+                  </li>
+                  <li data-option data-value="staging" class="bx--dropdown-item">
+                    <a class="bx--dropdown-link" href="javascript:void(0);" onclick="setCategory('New Product');" tabindex="-1">New Product</a>
+                  </li>
+                  <li data-option data-value="dea" class="bx--dropdown-item">
+                    <a class="bx--dropdown-link" href="javascript:void(0);" onclick="setCategory('Product Enhancement');" tabindex="-1">Product Enhancement</a>
+                  </li>
+                  <li data-option data-value="router" class="bx--dropdown-item">
+                    <a class="bx--dropdown-link" href="javascript:void(0);" onclick="setCategory('General Complaint');" tabindex="-1">General Complaint</a>
+                  </li>
+                  <li data-option data-value="router" class="bx--dropdown-item">
+                    <a class="bx--dropdown-link" href="javascript:void(0);" onclick="setCategory('Other');" tabindex="-1">Other</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <div style="height: 50px;"></div>
+            <button type="button" class="bx--btn bx--btn--primary" onclick="showHide( 'idea-feedback', 'picker-area');" disabled id="next-button-1">Continue</button>
+          </div>
 
-      <div class="bx--tile" style='padding: 50px 100px 80px 100px;'>
-      <div id='wts-frame' style=''>
-        <form action='/thank'  method='post' name='form1'>
-          <div  class="bx--form-item bx--text-input-wrapper">
-            <label for="text-input-3" class="bx--label">Name</label>
-            <input id="text-input-3" type="text" name='name' class="bx--text-input" placeholder="Your name">
+          <div id ="idea-feedback" style="width:60%">
+            <div style="font-size:14px;color:#aaa;">Section 2/3</div>
+            <div style="height: 20px;"></div>
+            <h1>Tell us about your idea!</h1>
+            <div style="height:20px;"></div>
+            Use all of your words—share as many details as you can so we can best understand what you’re thinking.
+            Remember: even the simplest ideas can grow into something marvelous.
+            <!-- <div class="bx--tile" style='padding: 50px 100px 80px 100px;'> -->
+            <div style="height:30px;"></div>
+            <div id='wts-frame' style=''>
+                <div class="bx--form-item">
+                  <!-- <label for="feedback-capture" class="bx--label">Your feedback</label> -->
+                  <textarea id='feedback-capture' onkeypress="checkFeedback();" class="bx--text-area bx--text-area--v2" rows="4" cols="50" placeholder="Enter your feedback, thoughts, dreams, ideas...what do you want us to know?"></textarea>
+                </div>
+            </div>
+          <!-- </div> -->
+         <!--  <div style="height:50px;"></div> -->
+          <!-- <div style="margin-left:25px;"> -->
+            <!-- <h2>Prioritization (optional)</h2>
+            <div style="height:10px;"></div>
+            Help us understand how important this is for you.<br>
+            We will consider your responses with the rest of the market.<br>
+            These are optional.
+            <div style="height:20px;"></div>
+            <h3>Difficulty</h3>
+            <div style="height:20px;"></div>
+            How difficult do you think this would be to make? -->
+            <!-- </div> -->
+            <!-- <div style="height:20px;"></div> -->
+            <!-- <div class="bx--form-item" style="margin-left:25px;"> -->
+            <!-- <div class="bx--form-item">
+              <div class="bx--slider-container" style="width:600px;">
+                <div class="bx--slider" data-slider data-slider-input-box="#slider-input-box" style="margin-left:12px;width:332px;">
+                  <div class="bx--slider__thumb" tabindex="0"></div>
+                  <div class="bx--slider__track"></div>
+                  <div class="bx--slider__filled-track"></div>
+                  <input id="difficulty-capture" aria-label="slider" id="slider" class="bx--slider__input" type="range" step="1" min="0" max="100" value="0">
+                </div>
+                <label class="bx--label" style="width:80px;">Easy</label>
+                <label id="slider-input-box_top-range-label" class="bx--slider__range-label">Hard</label>
+                <input id="slider-input-box" aria-labelledby="slider-input-box_bottom-range-label slider-input-box_top-range-label" type="number" class="bx--text-input bx--slider-text-input" style="display:none">
+              </div>
+            </div>
+
+            <div style="height:50px;"></div> -->
+            <!-- <div style="margin-left:25px;"> -->
+            <!-- <h3>Value</h3>
+            <div style="height:20px;"></div>
+            How valuable do you think this would be?
+            <div style="height:20px;"></div>
+            <div class="bx--form-item"> -->
+              <!-- <div class="bx--form-item" style="margin-left:25px;"> -->
+             <!--  <div class="bx--slider-container">
+                <div class="bx--slider" data-slider data-slider-input-box="#slider-input-box" style="margin-left:20px;width:350px;">
+                  <div class="bx--slider__thumb" tabindex="0"></div>
+                  <div class="bx--slider__track"></div>
+                  <div class="bx--slider__filled-track"></div>
+                  <input id="value-capture" aria-label="slider" id="slider" class="bx--slider__input" type="range" step="1" min="0" max="100" value="0">
+                </div>
+                <label class="bx--label" style="width:80px;">Take my money!</label>
+                <label id="slider-input-box_top-range-label" class="bx--slider__range-label">It would be nice to have.</label>
+                <input id="slider-input-box" aria-labelledby="slider-input-box_bottom-range-label slider-input-box_top-range-label" type="number" class="bx--text-input bx--slider-text-input" style="display:none">
+              </div>
+            </div> -->
+
+          <div style="height: 50px;"></div>
+          <button type="button" class="bx--btn bx--btn--secondary" onclick="showHide( 'picker-area', 'idea-feedback');" id="back-button-1">Back</button>
+          <button type="button" class="bx--btn bx--btn--primary" onclick="setFeedback(); showHide( 'contact-info', 'idea-feedback');" id="next-button-2" disabled>Continue</button>
+
+        </div>
+
+
+        <div id ="contact-info" style="width:60%">
+          <!-- <div class="bx--tile" style='padding: 50px 100px 80px 100px;'> -->
+          <div id='wts-frame' style=''>
+            <div style="font-size:14px;color:#aaa;">Section 3/3</div>
+            <div style="height: 20px;"></div>
+            <h1>Can we talk?</h1>
+              <div style="height: 20px;"></div>
+              <p>We love bringing users into our design process. You may already be a member of our Sponsor User program or have met with us at a RUG or conference.
+              If we need more information or just want to pick your brain, can we reach out?</p>
+              <div style="height: 40px;"></div>
+            <form action='/thank'  method='post' name='form1'>
+              <div  class="bx--form-item bx--text-input-wrapper">
+                <label for="text-input-3" class="bx--label">Name</label>
+                <input id="text-input-3" type="text" name='name' class="bx--text-input" placeholder="First and last name">
+              </div>
+              <div style="height: 20px;"></div>
+              <div  class="bx--form-item bx--text-input-wrapper">
+                <label for="text-input-3" class="bx--label">Email</label>
+                <input id="text-input-3" type="text" name="email" class="bx--text-input" placeholder="name@company.com">
+              </div>
+              <div style="height: 20px;"></div>
+              <div  class="bx--form-item bx--text-input-wrapper">
+                <label for="text-input-3" class="bx--label">Company name</label>
+                <input id="text-input-3" type="text" name='company' class="bx--text-input" placeholder="Awesome Inc">
+              </div>
+              <div style="height: 20px;"></div>
+              <div  class="bx--form-item bx--text-input-wrapper">
+                <label for="text-input-3" class="bx--label">Title</label>
+                <input id="text-input-3" type="text" name="title" class="bx--text-input" placeholder="Vice President of Awesome">
+              </div>
+              <div style="none;">
+                 <input type="hidden" name="category" id="category-item">
+              </div>
+              <div style="none;">
+                 <input type="hidden" name="feedback" id="feedback-item">
+              </div>
+              <div style="none;">
+                 <input type="hidden" name="difficulty" id="difficulty-item">
+              </div>
+              <div style="none;">
+                 <input type="hidden" name="value" id="value-item">
+              </div>
+              <div style="height: 50px;"></div>
+              <!-- <div class="bx--form-item"> -->
+                <button type="button" class="bx--btn bx--btn--secondary" onclick="showHide( 'idea-feedback', 'contact-info');" id="back-button-2">Back</button>
+                <input class="bx--btn bx--btn--primary" type="submit" value="Submit">
+              <!-- </div> -->
+            </form>
           </div>
-          <div  class="bx--form-item bx--text-input-wrapper">
-            <label for="text-input-3" class="bx--label">Email</label>
-            <input id="text-input-3" type="text" name='email'class="bx--text-input" placeholder="Your email address">
-          </div>
-          <div class="bx--form-item">
-            <label for="text-area-2" class="bx--label">Your feedback</label>
-            <textarea id="text-area-2" name='feedback' class="bx--text-area bx--text-area--v2" rows="4" cols="50" placeholder="Enter your feedback, thoughts, dreams, ideas...what do you want us to know?"></textarea>
-          </div>
-          <div class="bx--form-item">
-            <input class="bx--btn bx--btn--primary" type="submit" value="Submit">
-          </div>
-        </form>
+        <!-- </div> -->
       </div>
-    </div>
   </div>
 </div>
 </body>
