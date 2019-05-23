@@ -2,73 +2,206 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>IBM Watson Talent Feedback</title>
+<title>IBM Watson Talent Suggestion Box</title>
 <link rel="stylesheet" href="https://unpkg.com/carbon-components/css/carbon-components.min.css">
+<script type="text/javascript" src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js">
+var Dropdown = CarbonComponents.Dropdown;
+const dropDownElement = document.getElementById('category-picker');
+const dropDownInstance = Dropdown.create(dropDownElement);
+</script>
+<script type="text/javascript" src="https://github.com/IBM/carbon-components/blob/master/src/components/ui-shell/header-nav.js">
+</script>
 <style>
+body {
+  height: 100%;
+  background:
+    /* top, transparent red */
+    linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 1)
+    ),
+    /* bottom, image */
+    url("ideas1.jpg");
+  /* background-size: cover; */
+height: 100%;
+width: 100%;
+  padding-left: 2.5rem;
+  padding-top: 50px;
+  letter-spacing: 0;
+  font-Size: 1rem;
+  Line-height: 1.5rem;
+  color: white;
+}
 .container {
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 }
-
 .container img {
   width: 100%;
   height: auto;
 }
-
 .container .headline {
-  position: absolute;
+  position: relative;
   color: #fff;
   top: 9%;
   font-size: 120px;
-  left: 25px;
+  left: 2.5rem;
 }
-
 .container .blurb {
-  position: absolute;
+  position: relative;
   color: #fff;
   top: 35%;
   font-size: 28px;
-  left: 25px;
+  left: 2.5rem;
 }
-
 .container .banner {
-  position: absolute;
+  position: relative;
   color: #fff;
   top: 1%;
   font-size: 28px;
   left: 25px;
   width: 150%;
 }
-
-.container .btn {
-  position: absolute;
-  top: 45%;
-  left: 25px;
-  background-color: #2665f6;
-  color: #fff;
-  font-size: 24px;
-  padding: 10px 25px;
-  border: none;
-  cursor: pointer;
-  border-radius: 0px;
-  text-align: center;
+h2 {
+  color: white;
 }
-
+.website-alert + .bx--header {
+    top: 2.5rem;
+}
+.bx--header--website {
+    z-index: 9999;
+    background-color: #171717;
+    border-bottom: 1px solid #3d3d3d;
+}
+.bx--header {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    background-color: #252525;
+    color: #f3f3f3;
+    z-index: 6000;
+    padding-left: 2.5rem;
+}
+a.bx--header__name, a.bx--header__name:hover {
+    color: #f3f3f3;
+}
+a.bx--header__name {
+    font-size: .875rem;
+    line-height: 1.125rem;
+    letter-spacing: .16px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 1rem;
+        padding-left: 1rem;
+    text-decoration: none;
+    letter-spacing: .1px;
+    line-height: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .bx--header .bx--header__name span {
+      font-weight: 600;
+  }
+  h6 {
+    font-size: 6.75rem;
+    Line-height: 7rem;
+    font-Weight: 400;
+    Letter-spacing: 0px;
+    Color: white;
+    margin-bottom: 32px;
+  }
+  h5 {
+    font-size: 2.25rem;
+    Line-height: 2.5rem;
+    font-Weight: 400;
+    Letter-spacing: 0px;
+    Color: white;
+    margin-bottom: 32px;
+  }
+h4 {
+font-size: 1rem;
+line-height: 1.5rem;
+margin-bottom: 24px;
+letter-spacing: 0px;
+color: white;
+}
+.bx--accordion__heading {
+  transition: background-color cubic-bezier(0.2, 0, 0.38, 0.9) 110ms;
+  background-color: none;
+  color: white;
+  fill: white;
+}
+.bx--accordion__heading:hover {
+color:black;
+fill:black;
+}
+.bx--accordion__heading: {
+fill:black;
+}
+.bx--accordion__arrow {
+  fill:white;
+}
+.bx--accordion__arrow:hover {
+  fill:black;
+}
 </style>
 </head>
 <body>
+<header class="bx--header bx--header--website" role="banner"><div class="bx--header__name" href="/">IBM Watson Talent&nbsp;<span>Ideation Station</span></class><div class="bx--header__global"></div></header>
+</header>
+<div class="backgroundimage">
         <div class="container">
-
-        <img src="Mixcloud.png" alt="" style="width: 2250px">
         <div class="banner">
-        <h4>IBM <b>Watson Talent</b> Codename: Ideation Station</h4>
         <div style="height: 20px;"></div>
         </div>
-        <div class="headline">Let's Make Awesome</div>
-        <div style="height:20px"></div>
-        <div class="blurb">Here's your chance to influence our design, you are the expert, share your thoughts with us.</div>
-        <button class="btn" onclick="location.href='https://talent-customer-engagement.mybluemix.net/feedback.html';">Let's go!</button>
+        <h6>Let's Make Awesome</h6>
+        <div style="height:10px"></div>
+        <h5>Join us in creating the Watson Talent solutions that you need!</h5>
+        <div style="height:10px"></div>
+        <h4>Over the years, it's clear that the success of IBM Talent Management Solutions and the emergence of Watson Talent is majorly due to the contribution and support from our customers. To keep that spirit alive, we invite you to contribute your ideas here. We do not promise to act on every idea but we do promise that they will all be considered. Let's work together to find new ways to enhance your users' experiences! </h4>
+        <button class="bx--btn bx--btn--primary" type="button" onclick="location.href='https://talent-customer-engagement.mybluemix.net/feedback.html';">
+          Let's Go!
+        </button>
+        <div style="height:180px"></div>
+        <ul data-accordion class="bx--accordion">
+            <li data-accordion-item class="bx--accordion__item">
+              <button class="bx--accordion__heading" aria-expanded="false" aria-controls="pane1" } ">
+                  <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--accordion__arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 8l-5 5-.7-.7L9.6 8 5.3 3.7 6 3z"></path></svg>
+                <div class="bx--accordion__title">How will you use these ideas?</div>
+              </button>
+              <div id="pane1" class="bx--accordion__content"  " >
+                <p>No matter how many awesome ideas we get, we can't make everything. These ideas will help us understand your overall user needs. They will give us a place to document the great ideas that are shared with us regularly. We do not promise to take action on every idea and we will provide no timeline for when we might consider these ideas. We do promise that we will respect every idea shared with us. Many of them will likely validate existing plans.</p></br>
+                <p>If you are looking for a more direct feature request, please use the <a href="https://www.ibm.com/developerworks/rfe/" target="_blank" style="color:white;"> Request for Enhancement tool</a> that is open to our customers.</p>
+                <div style="height:20px"></div>
+                <button class="bx--btn bx--btn--secondary" type="button" onClick="window.open('https://www.ibm.com/developerworks/rfe/');">
+                  Submit an RFE Instead
+                </button>
+              </div>
+            </li>
+            <li data-accordion-item class="bx--accordion__item">
+              <button class="bx--accordion__heading" aria-expanded="false" aria-controls="pane1" } ">
+                  <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--accordion__arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 8l-5 5-.7-.7L9.6 8 5.3 3.7 6 3z"></path></svg>
+                <div class="bx--accordion__title">About IBM Watson Talent</div>
+              </button>
+              <div id="pane1" class="bx--accordion__content"  " >
+                <p>Talent acquisition is the practice of attracting and hiring top talent to meet your company’s unique business needs. Done the right way, talent acquisition doesn’t just fill jobs, it finds best fit candidates for your organization. IBM® offers comprehensive and integrated recruiting solutions powered by Watson™ AI and data-driven insights that help you identify the skills you need and incorporate precision into your recruitment and hiring practices. <a href="https://www.ibm.com/talent-management" style="color:#C9deff;" target="_blank">Learn more about Watson Talent.</a></p>
+              </div>
+            </li>
+            <div style="height:120px"></div>
+                              <div style="height:60px"></div>
     </div>
 </body>
 </html>

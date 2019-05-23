@@ -6,7 +6,11 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
+var assignees;
+
 var GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+
+var authToken = "token " + GITHUB_TOKEN;
 
 app.use(express.static(__dirname + '/images/'));
 
@@ -17,6 +21,21 @@ var server = app.listen(8080, function () {
   var port = server.address().port
   console.log("Example app listening at %s:%s Port", host, port)
 });
+
+
+// #1 ADD YOUR REPO FOR YOUR OWNER'S JSON FILE - see owners.json in this repo for structure required
+request({
+      "url":"OWNER.JSON-ADD YOURS HERE",
+      "method":"GET",
+      "headers": {"Authorization": authToken, "User-Agent": "node.js", 'Accept': 'application/vnd.github.VERSION.raw'},
+      }, function(err, response, body) {
+          console.log("Owners -> " + body);
+          if (err) console.log(err);
+          assignees = JSON.parse( body);
+    });
+
+
+console.log('This is after the loadAssignees call');  
 
 
 app.get('/feedback.html', function (req, res) {
@@ -36,44 +55,6 @@ app.get('/', function (req, res) {
 });
 
 app.post('/thank', urlencodedParser, function (req, res){
-  var reply='';
-  reply += '<!DOCTYPE html><html><head><meta charset="utf-8" />';
-  reply += '<title>IBM Watson Talent Feedback</title>';
-  reply += '<link rel="stylesheet" href="https://unpkg.com/carbon-components/css/carbon-components.min.css">';
-  reply += '<style>';
-  reply += '.container {position: relative;width: 100%;max-width: 400px;}';
-  reply += '.container img {width: 100%;height: auto;}';
-  reply += '.container .headline {position: absolute;color: #fff;top: 9%;font-size: 72px;left: 25px;}';
-  reply += '.container .blurb {position: absolute;color: #fff;top: 20%;font-size: 28px;left: 25px;width: 150%;}';
-  reply += '.container .bye {position: absolute;color: #fff;top: 45%;font-size: 42px;left: 25px;}';
-  reply += '.container .banner {position: absolute;color: #fff;top: 1%;font-size: 28px;left: 25px;width: 150%}';
-  reply += '</style></head><body>';
-  reply += '<div class="container">';
-  reply += '        <img src="Cityscape.png" alt="" style="width: 2250px">';
-  reply += '        <div class="banner">';
-  reply += '        <h4>IBM <b>Watson Talent</b> Codename: Ideation Station</h4>';
-  reply += '        <div style="height: 20px;"></div>';
-  reply += '        </div>';
-  reply += '      <div style="font-size:14px;color:#aaa;">Success</div>';
-  reply += '        <div style="height: 20px;"></div>';
-  reply += '        <div class="headline">Thanks</div>';
-  reply += '        <div style="height:20px"></div>';
-  reply += '        <div class="blurb">OMG, you\'ve given us such a great idea. We can\'t guarantee that we will be able to make everything but your input will help us prioritize our future work.';
-  reply += '        </div>';
-  reply += '        <div class="bye">CYA</div>';
-  reply += '        </div>';
-  reply += '</body></html>';
-
-  //reply += "Your name is " + req.body.name;
-  //reply += "<br>Your E-mail id is " + req.body.email;
-  //reply += "<br>Your company is " + req.body.company;
-  //reply += "<br>Your title is " + req.body.title;
-  //reply += "<br>Your feedback is " + req.body.feedback;
-  //reply += "<br>Your category is " + req.body.category;
-  //reply += "<br>Your value is " + req.body.value;
-  //reply += "<br>Your difficulty is " + req.body.difficulty;
-  
-
   var theTitle = 'Issue from <' + req.body.name;
   theTitle += '> email: <' + req.body.email;
   theTitle += '> title: <' + req.body.title;
@@ -81,11 +62,6 @@ app.post('/thank', urlencodedParser, function (req, res){
 
   console.log( "posting to git");
 
-  //"https://api.github.com/repos/jarusso/test-issue-2/issues"
-  //"url":"https://api.github.com/repos/jarusso/test-feedback/issues",
-  //"url":"https://github.ibm.com/api/v3/repos/jrusso/talent-feedback/issues",
-
-  //var labelArray = [req.body.category, req.body.difficulty, req.body.value];
   var labelArray;
   if ( validateEmail(req.body.email ))
   {
@@ -99,19 +75,48 @@ app.post('/thank', urlencodedParser, function (req, res){
   var theLabels = JSON.stringify(labelArray);
   console.log(" theLabels = " + theLabels);
 
-  var authToken = "token " + GITHUB_TOKEN;
-
-  request({
-      "url":"https://github.ibm.com/api/v3/repos/russo/talent-feedback/issues",
-      "method":"POST",
-      "headers": {"Authorization": authToken, "User-Agent": "node.js"},
-      "body": JSON.stringify({ title: theTitle, body: req.body.feedback, labels: labelArray })
-      }, function(err, response, body) {
-          console.log(body);
-          if (err) console.log(err);
+  
+  // create assignment
+  
+  var assigneeArray = [assignees[req.body.category]];
+  var bAssignees = false;
+  
+  if (typeof assigneeArray !== 'undefined' && assigneeArray.length > 0) {
+    // the array is defined and has at least one element
+    bAssignees = true;
+    console.log("We have assignees");
+  }
+  
+  // #2 ADD YOUR REPO FOR WHERE YOU WISH TO CAPTURE ISSUES
+  
+  {
+      request({
+          "url":"ADD YOUR GITHUB REPO FOR ISSUES HERE",
+          "method":"POST",
+          "headers": {"Authorization": authToken, "User-Agent": "node.js"},
+          "body": JSON.stringify({ title: theTitle, body: req.body.feedback, labels: labelArray, assignees: assigneeArray})
+          }, function(err, response, body) {
+              console.log(body);
+              if (err) console.log(err);
+        });
+  }
+  else
+  {
+      request({
+          "url":"ADD YOUR GITHUB REPO FOR ISSUES HERE",
+          "method":"POST",
+          "headers": {"Authorization": authToken, "User-Agent": "node.js"},
+          "body": JSON.stringify({ title: theTitle, body: req.body.feedback, labels: labelArray})
+          }, function(err, response, body) {
+              console.log(body);
+              if (err) console.log(err);
+        });
+  }
+    fs.readFile("thank.html",function (err, data){
+        res.writeHead(200, {'Content-Type': 'text/html','Content-Length': data.length});
+        res.write(data);
+        res.end();
     });
-
-  res.send(reply);
  });
  
 function validateEmail(email)
