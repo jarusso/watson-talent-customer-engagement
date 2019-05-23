@@ -8,17 +8,17 @@ It makes use of the [GitHub API](https://developer.github.com/v3/) and also the 
 
 First, the flow is very straight forward. A user will come to the URL and see a call to action
 
-![Call to action](https://github.com/jarusso/watson-talent-customer-engagement/blob/latest-running-updates/readme-images/CallToAction.png)
+![Call to action](https://github.com/jarusso/watson-talent-customer-engagement/blob/master/readme-images/CallToAction.png)
 
 Then as they progress, the work through the input screens, and are then thanked.
 
-![Category](https://github.com/jarusso/watson-talent-customer-engagement/blob/latest-running-updates/readme-images/Category.png)
+![Category](https://github.com/jarusso/watson-talent-customer-engagement/blob/master/readme-images/Category.png)
 
-![Comments](https://github.com/jarusso/watson-talent-customer-engagement/blob/latest-running-updates/readme-images/Comments.png)
+![Comments](https://github.com/jarusso/watson-talent-customer-engagement/blob/master/readme-images/Comments.png)
 
-![Contact](https://github.com/jarusso/watson-talent-customer-engagement/blob/latest-running-updates/readme-images/Contact.png)
+![Contact](https://github.com/jarusso/watson-talent-customer-engagement/blob/master/readme-images/Contact.png)
 
-![Thanks](https://github.com/jarusso/watson-talent-customer-engagement/blob/latest-running-updates/readme-images/Thanks.png)
+![Thanks](https://github.com/jarusso/watson-talent-customer-engagement/blob/master/readme-images/Thanks.png)
 
 
 ### GitHub token
