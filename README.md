@@ -54,7 +54,7 @@ request({
     
 ```
 
-This is where you need to drop in your `owners.json` file. This file is used to assign owners to the issue being created, based on the input area selected by the user. I've an exampled file here, [owners.json](https://github.com/jarusso/watson-talent-customer-engagement/blob/latest-running-updates/owners.json), which has this content;
+This is where you need to drop in your `owners.json` file. This file is used to assign owners to the issue being created, based on the input area selected by the user. I've an exampled file here, [owners.json](https://github.com/jarusso/watson-talent-customer-engagement/blob/master/owners.json), which has this content;
 
 ```
 {
